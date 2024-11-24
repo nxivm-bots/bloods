@@ -1,4 +1,4 @@
-﻿# https://t.me/Ultroid_Official/524
+﻿
 
 from pyrogram import __version__, Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
@@ -100,8 +100,3 @@ async def cb_handler(client: Bot, query: CallbackQuery):
 
     elif data == "show_plans":
         await show_plans(client, query.message)
-
-# https://t.me/Ultroid_Official/524
-
-
-# ultroidofficial : YT
