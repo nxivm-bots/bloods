@@ -207,8 +207,7 @@ async def start_command(client: Client, message: Message):
         elif verify_status['is_verified'] or premium_status:
             reply_markup = InlineKeyboardMarkup(
                 [
-                    [InlineKeyboardButton("About Me", callback_data="about"), InlineKeyboardButton("Close", callback_data="close")],
-                    [InlineKeyboardButton("✨ Premium", callback_data="upi_info")]
+                    [InlineKeyboardButton("Premium", callback_data="premium"), InlineKeyboardButton("Close", callback_data="close")]
                 ]
             )
             welcome_message = await message.reply_text(
@@ -232,7 +231,7 @@ async def start_command(client: Client, message: Message):
                 buttons = [
                     [InlineKeyboardButton("Click here", url=link)],
                     [InlineKeyboardButton("How to use the bot", url=TUT_VID)],
-                    [InlineKeyboardButton("✨ Premium", callback_data="upi_info")]
+                    [InlineKeyboardButton("Premium", callback_data="premium")]
                 ]
                 verification_message = await message.reply(
                     f"Your token has EXPIRED !! \nRefresh Your Token to continue.\n\nToken Timeout: {get_exp_time(VERIFY_EXPIRE)}",
@@ -261,10 +260,6 @@ async def not_joined(client: Client, message: Message):
             InlineKeyboardButton(text="Join Channel", url=client.invitelink),
             InlineKeyboardButton(text="Join Channel", url=client.invitelink2),
         ],
-        [
-            InlineKeyboardButton(text="Join Channel", url=client.invitelink3),
-            #InlineKeyboardButton(text="Join Channel", url=client.invitelink4),
-        ]
     ]
     try:
         buttons.append(
