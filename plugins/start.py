@@ -140,7 +140,7 @@ async def start_command(client: Client, message: Message):
                 sent_message = await message.reply("Your token is invalid or expired. Try again by clicking /start.")
                 return
             await update_verify_status(id, is_verified=True, verified_time=time.time())
-            sent_message = await message.reply("Your token was successfully verified and is valid for 24 hours.")
+            sent_message = await message.reply("Your token was successfully verified and is valid for 6 hours.")
         elif len(message.text) > 7 and (verify_status['is_verified'] or premium_status):
             try:
                 base64_string = message.text.split(" ", 1)[1]
@@ -229,12 +229,11 @@ async def start_command(client: Client, message: Message):
                 await update_verify_status(id, verify_token=token, link="")
                 link = await get_shortlink(SHORTLINK_URL, SHORTLINK_API, f'https://telegram.dog/{client.username}?start=verify_{token}')
                 buttons = [
-                    [InlineKeyboardButton("Click here", url=link)],
-                    [InlineKeyboardButton("How to use the bot", url=TUT_VID)],
-                    [InlineKeyboardButton("Premium", callback_data="premium")]
+                    [InlineKeyboardButton("￫ 𝖵𝖾𝗋𝗂𝖿𝗒", url=link), [InlineKeyboardButton("￫ 𝖳𝗎𝗍𝗈𝗋𝗂𝖺𝗅", url=TUT_VID)],
+                    [InlineKeyboardButton("𝖡𝗎𝗒 𝗌𝗎𝖻𝗌𝖼𝗋𝗂𝗉𝗍𝗂𝗈𝗇 | 𝖭𝗈 𝖠𝖽𝗌", callback_data="premium")]
                 ]
                 verification_message = await message.reply(
-                    f"Your token has EXPIRED !! \nRefresh Your Token to continue.\n\nToken Timeout: {get_exp_time(VERIFY_EXPIRE)}",
+                    f"Your Ads token is expired, refresh your token and try again.\n\nToken Timeout: {get_exp_time(VERIFY_EXPIRE)}\n\nWhat is the token?\n\nThis is an ads token. If you pass 1 ad, you can use the bot for 6 Hour after passing the ad.",
                     reply_markup=InlineKeyboardMarkup(buttons),
                     protect_content=PROTECT_CONTENT,
                     quote=True
