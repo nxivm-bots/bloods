@@ -31,8 +31,72 @@ async def cb_handler(client: Bot, query: CallbackQuery):
         except Exception as e:
             print(f"Error deleting reply-to message: {e}")
 
-    elif data == "upi_info":
-        await upi_info(client, query.message)
+    elif data == "premium":
+        await query.message.edit_text(
+            text="Choose an option:",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton("Buy Silver", callback_data="buy_silver")],
+                    [InlineKeyboardButton("Buy Gold", callback_data="buy_gold")],
+                    [InlineKeyboardButton("Buy Diamond", callback_data="buy_diamond")],
+                    [InlineKeyboardButton("Close", callback_data="close")]
+                ]
+            )
+        )
+    elif data == "buy_silver":
+        await query.message.edit_text(
+            text=(
+                "<b><u>Silver Plan</u></b>\n\n"
+                "1 Month - 50 INR\n"
+                "<pre>≡ This plan provides premium access for our current bot with no Ads.</pre>\n"
+                "⩉ <a href='https://i.ibb.co/BCGJBvd/file-2330.jpg'>Click To Get QR</a>\n"
+                "⌕ For other payment methods, contact @odacchi.\n\n"
+                "<b>Note: This plan is separate and lets you use bots without verification (Ads) only. Limits will remain the same as before.</b>"
+            ),
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton("Back", callback_data="premium")],
+                    [InlineKeyboardButton("Close", callback_data="close")]
+                ]
+            )
+        )
+    elif data == "buy_gold":
+        await query.message.edit_text(
+            text=(
+                "<b><u>Gold Plan</u></b>\n\n"
+                "1 Month - 100 INR\n"
+                "<pre>≡ This plan provides premium access for our two bots with no Ads.</pre>\n"
+                "⩉ <a href='https://i.ibb.co/BCGJBvd/file-2330.jpg'>Click To Get QR</a>\n"
+                "⌕ For other payment methods, contact @odacchi.\n\n"
+                "<b>Note: This plan offers enhanced limits and fewer restrictions.</b>"
+            ),
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton("Back", callback_data="premium")],
+                    [InlineKeyboardButton("Close", callback_data="close")]
+                ]
+            )
+        )
+    elif data == "buy_diamond":
+        await query.message.edit_text(
+            text=(
+                "<b>Diamond Plan</b>\n\n"
+                "1 Month - 150 INR\n"
+                "<pre>≡ This plan provides premium access for our bots with no Ads.</pre>\n"
+                "⩉<a href='https://i.ibb.co/BCGJBvd/file-2330.jpg'>Click To Get QR</a>\n"
+                "⌕ For other payment methods, contact @odacchi.\n\n"
+                "<b>Note: This plan is separate and lets you use bots without verification (Ads) only. Limits will remain the same as before.</b>"
+            ),
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton("Back", callback_data="premium")],
+                    [InlineKeyboardButton("Close", callback_data="close")]
+                ]
+            )
+        )
 
     elif data == "show_plans":
         await show_plans(client, query.message)
